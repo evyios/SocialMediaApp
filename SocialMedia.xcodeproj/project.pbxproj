@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5C39FACE294487D800F3258F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C39FACD294487D800F3258F /* LoginView.swift */; };
+		5C39FAD02944A71200F3258F /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C39FACF2944A71200F3258F /* RegisterView.swift */; };
 		5C5AB92A2943CB98001EBAE6 /* SocialMediaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5AB9292943CB98001EBAE6 /* SocialMediaApp.swift */; };
 		5C5AB92C2943CB98001EBAE6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5AB92B2943CB98001EBAE6 /* ContentView.swift */; };
 		5C5AB92E2943CB99001EBAE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C5AB92D2943CB99001EBAE6 /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		5C39FACD294487D800F3258F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		5C39FACF2944A71200F3258F /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		5C5AB9262943CB98001EBAE6 /* SocialMedia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocialMedia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C5AB9292943CB98001EBAE6 /* SocialMediaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMediaApp.swift; sourceTree = "<group>"; };
 		5C5AB92B2943CB98001EBAE6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				5C39FACD294487D800F3258F /* LoginView.swift */,
+				5C39FACF2944A71200F3258F /* RegisterView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -169,6 +172,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C39FACE294487D800F3258F /* LoginView.swift in Sources */,
+				5C39FAD02944A71200F3258F /* RegisterView.swift in Sources */,
 				5C5AB92C2943CB98001EBAE6 /* ContentView.swift in Sources */,
 				5C5AB92A2943CB98001EBAE6 /* SocialMediaApp.swift in Sources */,
 			);
