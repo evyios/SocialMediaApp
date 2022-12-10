@@ -12,6 +12,7 @@ struct RegisterView: View {
     @State var emailID: String = ""
     @State var password: String = ""
     @State var userName: String = ""
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         VStack(spacing: 10) {
@@ -57,7 +58,7 @@ struct RegisterView: View {
                     .foregroundColor(.gray)
                 
                 Button("Login") {
-                    
+                    dismiss()
                 }
                 .fontWeight(.bold)
                 .foregroundColor(.black)
