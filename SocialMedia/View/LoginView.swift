@@ -6,12 +6,17 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct LoginView: View {
     
     @State var emailID: String = ""
     @State var password: String = ""
+    
     @State var createAccount: Bool = false
+    
+    @State var showError: Bool = false
+    @State var errorMassage: String = ""
     
     var body: some View {
         VStack(spacing: 10) {
@@ -33,15 +38,13 @@ struct LoginView: View {
                     .textContentType(.emailAddress)
                     .border(2, .gray.opacity(0.7))
                 
-                Button("Reset Password?", action: {})
+                Button("Reset Password?", action: resetPassword)
                     .font(.callout)
                     .fontWeight(.medium)
                     .tint(.black)
                     .hAlign(.trailing)
                 
-                Button {
-                    
-                } label: {
+                Button(action: loginUser) {
                     Text("Sign in")
                         .foregroundColor(.white)
                         .hAlign(.center)
@@ -70,6 +73,40 @@ struct LoginView: View {
         .fullScreenCover(isPresented: $createAccount) {
             RegisterView()
         }
+        .alert(errorMassage, isPresented: $showError) {
+            
+        }
+    }
+    func loginUser() {
+        Task {
+            do {
+                try await Auth.auth().signIn(withEmail: emailID, password: password)
+                print("User Found")
+            } catch {
+                await setError(error)
+            }
+        }
+    }
+    
+    func resetPassword() {
+        Task {
+            do {
+                try await Auth.auth().sendPasswordReset(withEmail: emailID)
+                print("Link Sent")
+            } catch {
+                await setError(error)
+            }
+        }
+
+    }
+    
+    //MARK: Displaying errors via alerts
+    func setError(_ error: Error) async {
+        //MARK: Updating UI on main thread
+        await MainActor.run(body: {
+            errorMassage = error.localizedDescription
+            showError.toggle()
+        })
     }
 }
 
