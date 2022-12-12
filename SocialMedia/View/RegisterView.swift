@@ -7,6 +7,10 @@
 
 import SwiftUI
 import PhotosUI
+import Firebase
+import FirebaseStorage
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 struct RegisterView: View {
     
@@ -21,6 +25,17 @@ struct RegisterView: View {
     
     @State var showImagePicker: Bool = false
     @State var photoItem: PhotosPickerItem?
+    
+    @State var showError: Bool = false
+    @State var errorMassage: String = ""
+    @State var isLoading: Bool = false
+    
+    //MARK: UserDefaults
+    @AppStorage("log_status") var logStatus: Bool = false
+    @AppStorage("user_profile_url") var profileURL: URL?
+    @AppStorage("user_name") var userNameStored: String = ""
+    @AppStorage("user_UID") var userUID: String = ""
+    
     
     var body: some View {
         VStack(spacing: 10) {
@@ -53,6 +68,9 @@ struct RegisterView: View {
         }
         .vAlign(.top)
         .padding(15)
+        .overlay(content: {
+            LoadingView(show: $isLoading)
+        })
         .photosPicker(isPresented: $showImagePicker, selection: $photoItem)
         .onChange(of: photoItem) { newValue in
             if let newValue {
@@ -68,6 +86,7 @@ struct RegisterView: View {
                 }
             }
         }
+        .alert(errorMassage, isPresented: $showError, actions: {})
     }
     
     @ViewBuilder
@@ -124,17 +143,60 @@ struct RegisterView: View {
     
             
             Button {
-                
+                registerUser()
             } label: {
                 Text("Sign up")
                     .foregroundColor(.white)
                     .hAlign(.center)
                     .fillView(.black)
             }
+            .disableWithOpacity(userName == "" || userBio == "" || emailID == "" || password == "" || userProfilePicData == nil)
             .padding(.top,50)
-
         }
     }
+    func registerUser() {
+        isLoading = true
+        closeKeyboard()
+        Task {
+            do {
+                try await Auth.auth().createUser(withEmail: emailID, password: password)
+                
+                guard let userUID = Auth.auth().currentUser?.uid else {return}
+                guard let imageData = userProfilePicData else {return}
+                let storageRef = Storage.storage().reference().child("Profile_images").child(userUID)
+                let _ = try await storageRef.putDataAsync(imageData)
+                
+                let downloadURL = try await storageRef.downloadURL()
+                
+                let user = User(username: userName, userBio: userBio, userBioLink: userBioLink, userUID: userUID, userEmail: emailID, userProfileURL: downloadURL)
+                
+                let _ = try Firestore.firestore().collection("Users").document(userUID).setData(from: user, completion: { error in
+                    if error == nil {
+                        print("Saved")
+                        userNameStored = userName
+                        self.userUID = userUID
+                        profileURL = downloadURL
+                        logStatus = true
+                        
+                    }
+                })
+            } catch {
+                try await Auth.auth().currentUser?.delete()
+                await setError(error)
+            }
+        }
+    }
+    
+    //MARK: Displaying errors via alerts
+    func setError(_ error: Error) async {
+        //MARK: Updating UI on main thread
+        await MainActor.run(body: {
+            errorMassage = error.localizedDescription
+            showError.toggle()
+            isLoading = false
+        })
+    }
+
 }
 
 struct RegisterView_Previews: PreviewProvider {

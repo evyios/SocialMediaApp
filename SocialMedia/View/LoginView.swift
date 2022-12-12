@@ -17,6 +17,12 @@ struct LoginView: View {
     
     @State var showError: Bool = false
     @State var errorMassage: String = ""
+    @State var isLoading: Bool = false
+    
+    @AppStorage("log_status") var logStatus: Bool = false
+    @AppStorage("user_profile_url") var profileURL: URL?
+    @AppStorage("user_name") var userNameStored: String = ""
+    @AppStorage("user_UID") var userUID: String = ""
     
     var body: some View {
         VStack(spacing: 10) {
@@ -69,6 +75,9 @@ struct LoginView: View {
         }
         .vAlign(.top)
         .padding(15)
+        .overlay(content: {
+            LoadingView(show: $isLoading)
+        })
         // MARK: Register View
         .fullScreenCover(isPresented: $createAccount) {
             RegisterView()
@@ -78,14 +87,30 @@ struct LoginView: View {
         }
     }
     func loginUser() {
+        isLoading = true
+        closeKeyboard()
         Task {
             do {
                 try await Auth.auth().signIn(withEmail: emailID, password: password)
                 print("User Found")
+                try await fetchUser()
             } catch {
                 await setError(error)
             }
         }
+    }
+    
+    //MARK: Fetching user data from firestore if user fonnd
+    func fetchUser() async throws{
+        guard let userID = Auth.auth().currentUser?.uid else {return}
+       let user = try await Firestore.firestore().collection("Users").document(userID).getDocument(as: User.self)
+        await MainActor.run(body: {
+            userUID = userID
+            userNameStored = user.username
+            profileURL = user.userProfileURL
+            logStatus = true
+            
+        })
     }
     
     func resetPassword() {
@@ -106,6 +131,7 @@ struct LoginView: View {
         await MainActor.run(body: {
             errorMassage = error.localizedDescription
             showError.toggle()
+            isLoading = false
         })
     }
 }
@@ -117,6 +143,17 @@ struct LoginView_Previews: PreviewProvider {
 }
 
 extension View {
+    
+    func disableWithOpacity(_ condition: Bool) -> some View {
+        self
+            .disabled(condition)
+            .opacity(condition ? 0.6 : 1)
+    }
+    
+    func closeKeyboard(){
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+    
     func hAlign(_ alignment: Alignment) -> some View {
         self
             .frame(maxWidth: .infinity, alignment: alignment)
