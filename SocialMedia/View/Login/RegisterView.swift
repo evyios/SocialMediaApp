@@ -7,10 +7,10 @@
 
 import SwiftUI
 import PhotosUI
-import Firebase
 import FirebaseStorage
 import FirebaseFirestore
-import FirebaseFirestoreSwift
+import FirebaseAuth
+
 
 struct RegisterView: View {
     
