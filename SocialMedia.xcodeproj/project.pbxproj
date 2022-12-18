@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C1D74A1294CE2F000A721FD /* ProfileInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1D74A0294CE2F000A721FD /* ProfileInfo.swift */; };
+		5C1D74A4294CE56600A721FD /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 5C1D74A3294CE56600A721FD /* SDWebImageSwiftUI */; };
 		5C39FACE294487D800F3258F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C39FACD294487D800F3258F /* LoginView.swift */; };
 		5C39FAD02944A71200F3258F /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C39FACF2944A71200F3258F /* RegisterView.swift */; };
 		5C5AB92A2943CB98001EBAE6 /* SocialMediaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5AB9292943CB98001EBAE6 /* SocialMediaApp.swift */; };
@@ -26,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5C1D74A0294CE2F000A721FD /* ProfileInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfo.swift; sourceTree = "<group>"; };
 		5C39FACD294487D800F3258F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		5C39FACF2944A71200F3258F /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		5C5AB9262943CB98001EBAE6 /* SocialMedia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocialMedia.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C1D74A4294CE56600A721FD /* SDWebImageSwiftUI in Frameworks */,
 				5C5AB93B2943D14B001EBAE6 /* FirebaseAuth in Frameworks */,
 				5C8586712945F7CB001A5974 /* FirebaseStorage in Frameworks */,
 				5C85866B2945F5E0001A5974 /* FirebaseFirestore in Frameworks */,
@@ -135,6 +139,7 @@
 			children = (
 				5CEBCE8B294B8657003CDC4F /* MainView.swift */,
 				5CEBCE8D294B8E35003CDC4F /* ProfileView.swift */,
+				5C1D74A0294CE2F000A721FD /* ProfileInfo.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -168,6 +173,7 @@
 				5C85866A2945F5E0001A5974 /* FirebaseFirestore */,
 				5C85866C2945F5E0001A5974 /* FirebaseFirestoreSwift */,
 				5C8586702945F7CB001A5974 /* FirebaseStorage */,
+				5C1D74A3294CE56600A721FD /* SDWebImageSwiftUI */,
 			);
 			productName = SocialMedia;
 			productReference = 5C5AB9262943CB98001EBAE6 /* SocialMedia.app */;
@@ -199,6 +205,7 @@
 			mainGroup = 5C5AB91D2943CB97001EBAE6;
 			packageReferences = (
 				5C5AB9392943D14B001EBAE6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				5C1D74A2294CE56600A721FD /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
 			productRefGroup = 5C5AB9272943CB98001EBAE6 /* Products */;
 			projectDirPath = "";
@@ -229,6 +236,7 @@
 			files = (
 				5C39FACE294487D800F3258F /* LoginView.swift in Sources */,
 				5CEBCE8E294B8E35003CDC4F /* ProfileView.swift in Sources */,
+				5C1D74A1294CE2F000A721FD /* ProfileInfo.swift in Sources */,
 				5CEBCE8C294B8657003CDC4F /* MainView.swift in Sources */,
 				5C39FAD02944A71200F3258F /* RegisterView.swift in Sources */,
 				5C5AB92C2943CB98001EBAE6 /* ContentView.swift in Sources */,
@@ -371,6 +379,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -402,6 +411,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -442,6 +452,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5C1D74A2294CE56600A721FD /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		5C5AB9392943D14B001EBAE6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -453,6 +471,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5C1D74A3294CE56600A721FD /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5C1D74A2294CE56600A721FD /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
 		5C5AB93A2943D14B001EBAE6 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 5C5AB9392943D14B001EBAE6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

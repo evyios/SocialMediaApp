@@ -103,7 +103,7 @@ struct LoginView: View {
     //MARK: Fetching user data from firestore if user fonnd
     func fetchUser() async throws{
         guard let userID = Auth.auth().currentUser?.uid else {return}
-       let user = try await Firestore.firestore().collection("Users").document(userID).getDocument(as: User.self)
+        let user = try await Firestore.firestore().collection("Users").document(userID).getDocument(as: User.self)
         await MainActor.run(body: {
             userUID = userID
             userNameStored = user.username
