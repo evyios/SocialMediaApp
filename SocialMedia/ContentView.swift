@@ -10,10 +10,13 @@ import SwiftUI
 struct ContentView: View {
     @AppStorage("log_status") var logStatus: Bool = false
     var body: some View {
-        if logStatus {
-            MainView()
-        } else {
-            LoginView()
+//        if logStatus {
+//            MainView()
+//        } else {
+//            LoginView()
+//        }
+        NewPost { _ in
+            
         }
     }
 }
