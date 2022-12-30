@@ -24,6 +24,7 @@
 		5CC1E1E429463F0900AF47F3 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC1E1E329463F0900AF47F3 /* LoadingView.swift */; };
 		5CCA99732959B54E00F197B3 /* NewPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCA99722959B54E00F197B3 /* NewPost.swift */; };
 		5CCA99752959B59100F197B3 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCA99742959B59100F197B3 /* Post.swift */; };
+		5CD6AFA4295F86E0008051F4 /* PostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD6AFA3295F86E0008051F4 /* PostsView.swift */; };
 		5CEBCE8A294B83F1003CDC4F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEBCE89294B83F1003CDC4F /* Extensions.swift */; };
 		5CEBCE8C294B8657003CDC4F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEBCE8B294B8657003CDC4F /* MainView.swift */; };
 		5CEBCE8E294B8E35003CDC4F /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEBCE8D294B8E35003CDC4F /* ProfileView.swift */; };
@@ -43,6 +44,7 @@
 		5CC1E1E329463F0900AF47F3 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		5CCA99722959B54E00F197B3 /* NewPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPost.swift; sourceTree = "<group>"; };
 		5CCA99742959B59100F197B3 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		5CD6AFA3295F86E0008051F4 /* PostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsView.swift; sourceTree = "<group>"; };
 		5CEBCE89294B83F1003CDC4F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		5CEBCE8B294B8657003CDC4F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		5CEBCE8D294B8E35003CDC4F /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				5CEBCE8D294B8E35003CDC4F /* ProfileView.swift */,
 				5C1D74A0294CE2F000A721FD /* ProfileInfo.swift */,
 				5CCA99722959B54E00F197B3 /* NewPost.swift */,
+				5CD6AFA3295F86E0008051F4 /* PostsView.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -249,6 +252,7 @@
 				5C5AB92C2943CB98001EBAE6 /* ContentView.swift in Sources */,
 				5C8586732945FF4C001A5974 /* User.swift in Sources */,
 				5C5AB92A2943CB98001EBAE6 /* SocialMediaApp.swift in Sources */,
+				5CD6AFA4295F86E0008051F4 /* PostsView.swift in Sources */,
 				5CCA99732959B54E00F197B3 /* NewPost.swift in Sources */,
 				5CC1E1E429463F0900AF47F3 /* LoadingView.swift in Sources */,
 				5CEBCE8A294B83F1003CDC4F /* Extensions.swift in Sources */,

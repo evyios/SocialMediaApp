@@ -7,6 +7,8 @@
 
 import SwiftUI
 import PhotosUI
+import Firebase
+import FirebaseStorage
 
 struct NewPost: View {
     
@@ -16,7 +18,7 @@ struct NewPost: View {
     @State private var postImageData: Data?
     
     @AppStorage("user_profile_url") private var profileURL: URL?
-    @AppStorage("user_name") private var userNameStored: String = ""
+    @AppStorage("user_name") private var userName: String = ""
     @AppStorage("user_UID") private var userUID: String = ""
     
     @Environment(\.dismiss) private var dismiss
@@ -127,6 +129,51 @@ struct NewPost: View {
                 }
             }
         }
+        .alert(errorMessage, isPresented: $showError, actions: {})
+        .overlay {
+            LoadingView(show: $isLoading)
+        }
+    }
+    func createPost() {
+        isLoading = true
+        showKeyboard = false
+        Task {
+            do {
+                guard let profileURL = profileURL else {return}
+                
+                let imageReferenceID = "\(userUID)\(Date())"
+                let storageRef = Storage.storage().reference().child("Post_Image").child(imageReferenceID)
+                if let postImageData {
+                    let _ = try await storageRef.putDataAsync(postImageData)
+                    let downloadURL = try await storageRef.downloadURL()
+                    
+                    let post = Post(text: postText, imageURL: downloadURL, imageReferenceId: imageReferenceID, username: userName, userUID: userUID, userProfileURL: profileURL)
+                    try await createDocumentAtFirebase(post)
+                } else {
+                    let post = Post(text: postText, username: userName, userUID: userUID, userProfileURL: profileURL)
+                    try await createDocumentAtFirebase(post)
+                }
+            } catch {
+                await setError(error)
+            }
+        }
+    }
+    
+    func createDocumentAtFirebase(_ post: Post) async throws {
+        let _ = try Firestore.firestore().collection("Posts").addDocument(from: post, completion: { error in
+            if error == nil {
+                isLoading = false
+                onPost(post)
+                dismiss()
+            }
+        })
+    }
+    
+    func setError(_ error: Error) async {
+        await MainActor.run(body: {
+            errorMessage = error.localizedDescription
+            showError.toggle()
+        })
     }
 }
 

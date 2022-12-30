@@ -10,7 +10,7 @@ import SwiftUI
 struct MainView: View {
     var body: some View {
         TabView {
-            Text("Recents")
+            PostsView()
                 .tabItem {
                     Image(systemName: "rectangle.on.rectangle")
                     Text("Post's")
