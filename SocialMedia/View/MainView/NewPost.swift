@@ -23,7 +23,7 @@ struct NewPost: View {
     
     @State private var isLoading: Bool = false
     @State private var errorMessage: String = ""
-    @State private var showMessage: Bool = false
+    @State private var showError: Bool = false
     
     @State private var showImagePicker: Bool = false
     @State private var photoItem: PhotosPickerItem?
