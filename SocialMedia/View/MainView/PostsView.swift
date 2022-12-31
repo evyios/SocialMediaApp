@@ -9,12 +9,12 @@ import SwiftUI
 
 struct PostsView: View {
     
-    //@State private var recentsPosts: [Post] = []
+    @State private var recentsPosts: [Post] = []
     @State private var createNewPost: Bool = false
     
     var body: some View {
         NavigationStack {
-            //ReusablePostsView(posts: $recentsPosts)
+            ReusablePostsView(posts: $recentsPosts)
             Text("hello")
                 .hAlign(.center).vAlign(.center)
                 .overlay(alignment: .bottomTrailing) {
@@ -35,7 +35,7 @@ struct PostsView: View {
         .fullScreenCover(isPresented: $createNewPost) {
             NewPost { post in
                 /// Adding created posts at the top of the recent posts
-                //recentsPosts.insert(post, at: 0)
+                recentsPosts.insert(post, at: 0)
             }
         }
     }
