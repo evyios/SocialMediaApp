@@ -15,7 +15,6 @@ struct PostsView: View {
     var body: some View {
         NavigationStack {
             ReusablePostsView(posts: $recentsPosts)
-            Text("hello")
                 .hAlign(.center).vAlign(.center)
                 .overlay(alignment: .bottomTrailing) {
                     Button {

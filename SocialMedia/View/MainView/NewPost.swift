@@ -45,7 +45,7 @@ struct NewPost: View {
                 }
                 .hAlign(.leading)
                 
-                Button(action: {}) {
+                Button(action: createPost) {
                     Text("Post")
                         .font(.callout.bold())
                         .foregroundColor(.white)

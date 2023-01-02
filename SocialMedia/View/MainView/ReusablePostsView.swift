@@ -31,6 +31,7 @@ struct ReusablePostsView: View {
                     }
                 }
             }
+            .padding(15)
         }
         .refreshable {
             isFetching = true
@@ -46,7 +47,13 @@ struct ReusablePostsView: View {
     @ViewBuilder
     func Posts() -> some View {
         ForEach(posts) { post in
-            
+            PostCardView(post: post) { updatedPost in
+                
+            } onDelete: {
+                
+            }
+            Divider()
+                .padding(.horizontal,-15)
         }
     }
     /// Fetching post's
