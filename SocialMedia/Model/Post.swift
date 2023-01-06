@@ -8,14 +8,14 @@
 import SwiftUI
 import FirebaseFirestoreSwift
 
-struct Post: Identifiable, Codable {
+struct Post: Identifiable, Codable, Equatable, Hashable {
     @DocumentID var id: String?
     var text: String
     var imageURL: URL?
     var imageReferenceId: String = ""
     var publishedDate: Date = Date()
     var likedIDs: [String] = []
-    var dislikerIDs: [String] = []
+    var dislikedIDs: [String] = []
     
     var username: String
     var userUID: String
@@ -28,7 +28,7 @@ struct Post: Identifiable, Codable {
         case imageReferenceId
         case publishedDate
         case likedIDs
-        case dislikerIDs
+        case dislikedIDs
         case username
         case userUID
         case userProfileURL
