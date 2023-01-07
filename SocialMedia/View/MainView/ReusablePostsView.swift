@@ -14,6 +14,8 @@ struct ReusablePostsView: View {
     
     @State var isFetching: Bool = true
     
+    @State private var paginationDoc: QueryDocumentSnapshot?
+    
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             LazyVStack {
@@ -36,11 +38,11 @@ struct ReusablePostsView: View {
         .refreshable {
             isFetching = true
             posts = []
-            await FetchPosts()
+            await fetchPosts()
         }
         .task {
             guard posts.isEmpty else {return}
-            await FetchPosts()
+            await fetchPosts()
         }
     }
     /// Displaying Fetching Post's
@@ -61,23 +63,39 @@ struct ReusablePostsView: View {
                     posts.removeAll {post.id == $0.id}
                 }
             }
+            .onAppear {
+                if post.id == posts.last?.id && paginationDoc != nil {
+                    Task{await fetchPosts()}
+                }
+            }
+            
             Divider()
                 .padding(.horizontal,-15)
         }
     }
     /// Fetching post's
-    func FetchPosts() async {
+    func fetchPosts() async {
         do {
             var query: Query!
-            query = Firestore.firestore().collection("Posts")
-                .order(by: "publishedDate", descending: true)
-                .limit(to: 20)
+            
+            if let paginationDoc {
+                query = Firestore.firestore().collection("Posts")
+                    .order(by: "publishedDate", descending: true)
+                    .start(afterDocument: paginationDoc)
+                    .limit(to: 20)
+            } else {
+                query = Firestore.firestore().collection("Posts")
+                    .order(by: "publishedDate", descending: true)
+                    .limit(to: 20)
+            }
+            
             let docs = try await query.getDocuments()
             let fetchedPosts = docs.documents.compactMap { doc -> Post? in
                 try? doc.data(as: Post.self)
             }
             await MainActor.run(body: {
-                posts = fetchedPosts
+                posts.append(contentsOf: fetchedPosts)
+                paginationDoc = docs.documents.last
                 isFetching = false
             })
         } catch {

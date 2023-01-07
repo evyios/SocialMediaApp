@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C0C7FC229688F7300D7677E /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0C7FC129688F7300D7677E /* SearchView.swift */; };
 		5C1D74A1294CE2F000A721FD /* ProfileInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1D74A0294CE2F000A721FD /* ProfileInfo.swift */; };
 		5C1D74A4294CE56600A721FD /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 5C1D74A3294CE56600A721FD /* SDWebImageSwiftUI */; };
 		5C23A0662960939600782136 /* ReusablePostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C23A0652960939600782136 /* ReusablePostsView.swift */; };
@@ -33,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5C0C7FC129688F7300D7677E /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		5C1D74A0294CE2F000A721FD /* ProfileInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfo.swift; sourceTree = "<group>"; };
 		5C23A0652960939600782136 /* ReusablePostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusablePostsView.swift; sourceTree = "<group>"; };
 		5C23A067296093BB00782136 /* PostCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCardView.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 				5CD6AFA3295F86E0008051F4 /* PostsView.swift */,
 				5C23A0652960939600782136 /* ReusablePostsView.swift */,
 				5C23A067296093BB00782136 /* PostCardView.swift */,
+				5C0C7FC129688F7300D7677E /* SearchView.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 				5C5AB92A2943CB98001EBAE6 /* SocialMediaApp.swift in Sources */,
 				5CD6AFA4295F86E0008051F4 /* PostsView.swift in Sources */,
 				5CCA99732959B54E00F197B3 /* NewPost.swift in Sources */,
+				5C0C7FC229688F7300D7677E /* SearchView.swift in Sources */,
 				5C23A068296093BB00782136 /* PostCardView.swift in Sources */,
 				5CC1E1E429463F0900AF47F3 /* LoadingView.swift in Sources */,
 				5CEBCE8A294B83F1003CDC4F /* Extensions.swift in Sources */,
