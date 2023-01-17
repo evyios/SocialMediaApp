@@ -15,11 +15,10 @@ struct SearchView: View {
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
-        NavigationStack {
             List {
                 ForEach(fetchedUsers) { user in
                     NavigationLink {
-                        
+                        ProfileInfo(user: user)
                     } label: {
                         Text(user.username)
                             .font(.callout)
@@ -40,24 +39,14 @@ struct SearchView: View {
                     fetchedUsers = []
                 }
             })
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Cancel") {
-                        dismiss()
-                    }
-                    .tint(.black)
-                }
-            }
         }
-    }
+
     func searchUsers() async {
         do {
-            let queryLowerCased = searchText.lowercased()
-            let queryUpperCased = searchText.uppercased()
             
             let documents = try await Firestore.firestore().collection("Users")
-                .whereField("username", isGreaterThanOrEqualTo: queryUpperCased)
-                .whereField("username", isGreaterThanOrEqualTo: "\(queryLowerCased)\u{f8ff}")
+                .whereField("username", isGreaterThanOrEqualTo: searchText)
+                .whereField("username", isGreaterThanOrEqualTo: "\(searchText)\u{f8ff}")
                 .getDocuments()
             
             let users = try documents.documents.compactMap { doc -> User? in

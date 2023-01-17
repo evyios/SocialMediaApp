@@ -32,7 +32,7 @@ struct PostsView: View {
                 .toolbar(content: {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         NavigationLink {
-                            
+                            SearchView()
                         } label: {
                             Image(systemName: "magnifyingglass")
                                 .tint(.black)

@@ -12,7 +12,10 @@ struct ReusablePostsView: View {
     
     @Binding var posts: [Post]
     
-    @State var isFetching: Bool = true
+    var basedOnUID: Bool = false
+    var uid: String = ""
+    
+    @State private var isFetching: Bool = true
     
     @State private var paginationDoc: QueryDocumentSnapshot?
     
@@ -36,8 +39,10 @@ struct ReusablePostsView: View {
             .padding(15)
         }
         .refreshable {
+            guard !basedOnUID else {return}
             isFetching = true
             posts = []
+            paginationDoc = nil
             await fetchPosts()
         }
         .task {
@@ -93,6 +98,12 @@ struct ReusablePostsView: View {
             let fetchedPosts = docs.documents.compactMap { doc -> Post? in
                 try? doc.data(as: Post.self)
             }
+            
+            if basedOnUID {
+                query = query
+                    .whereField("userUID", isEqualTo: uid)
+            }
+            
             await MainActor.run(body: {
                 posts.append(contentsOf: fetchedPosts)
                 paginationDoc = docs.documents.last
